@@ -25,3 +25,38 @@ int selectDataNo(Product p[], int product_count){
   scanf("%d", &no);
   return no;
 }
+
+void saveData(Product *p, int product_count){
+  FILE *fp;
+  fp = fopen("product.txt", "wt");
+
+  for(int i=0; i<product_count; i++){
+    if(p[i].gram == -1) continue;
+      fprintf(fp, "%s %d %d %d %d\n", p[i].name, p[i].gram, p[i].price, p[i].grade, p[i].grading_count);
+  }
+  fclose(fp);
+  printf("=> 데이터가 저장됨!\n");
+}
+
+int loadData(Product *p){
+  int i = 0;
+    FILE *fp;
+    fp = fopen("product.txt","rt");
+
+    if(fp == NULL) {
+      printf("=> 파일 없음\n");
+      return 0;
+    }
+
+    for(; i<10000; i++){
+        fscanf(fp, "%s",p[i].name);
+        if(feof(fp)) break;
+        fscanf(fp, "%d", &p[i].gram);
+        fscanf(fp, "%d", &p[i].price);
+        fscanf(fp, "%d", &p[i].grade);
+        fscanf(fp, "%d", &p[i].grading_count);
+    }
+    fclose(fp);
+    printf("=> 로딩 성공!\n");
+    return i;
+}
