@@ -4,9 +4,9 @@
 //#define DEBUG
 
 int main(){ 
-    // 다중 데이터 처리
     Product plist[10000];
     int count = 0, index = 0, menu;
+    count = loadData(plist);
     index = count;
 
 #ifdef DEBUG 
@@ -43,6 +43,18 @@ int main(){
                     count--;
                 }
             } 
+        }
+	else if(menu == 5){
+            saveData(plist, index);
+        }
+        else if(menu == 6){
+            searchName(plist,index);
+        }
+        else if(menu == 7){
+            searchPrice(plist, index);
+        }
+        else if(menu == 8){
+            searchGrade(plist, index);
         }
     }
     printf("종료됨!\n");
