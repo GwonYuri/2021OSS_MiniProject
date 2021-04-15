@@ -81,3 +81,27 @@ void searchName(Product *p, int product_count){
   if(scnt == 0) printf("=> 해당 과일은 판매하지 않습니다!");
   printf("\n");
 } // 사용자가 원하는 상품(명)이 해당 쇼핑몰에 있는지 검색하는 함수
+
+void searchPrice(Product *p,int product_count){
+  int scnt = 0;
+  int min_price, max_price;
+
+  while(1){
+    printf("원하는 가격대의 상품은? \n=> minimum price, maximum price를 차례대로 입력하세요 : ");
+    scanf("%d %d", &min_price, &max_price);
+    if(min_price <= max_price) break;
+  }
+
+  printf("\nNo|      Name      | gram|  price| grade| grading_count\n");
+  printf("========================================================\n");
+  for(int i=0; i<product_count; i++){
+    if(p[i].price == -1) continue;
+    if(p[i].price >= min_price && p[i].price <= max_price){
+      printf("%2d ", i+1);
+      readProduct(p[i]);
+      scnt++;
+    }
+  }
+  if(scnt == 0) printf("=> 원하는 가격대의 상품이 없습니다!");
+  printf("\n");
+} //사용자가 원하는 가격대의 상품을 찾아주는 function
