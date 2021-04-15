@@ -1,5 +1,3 @@
-#Makefile(조건부컴파일)
-
 CC = gcc
 CFLAGS = -W -Wall
 TARGET = fruit
@@ -12,4 +10,4 @@ $(TARGET) : $(OBJECTS)
 $(DTARGET) : $(OBJECTS)
 	$(CC) $(CFLAGS) -DDEBUG -o $@ $^
 clean:
-	rm *.o fruit
+	rm -f *.o $(TARGET) $(DTARGET) 
