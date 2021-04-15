@@ -60,3 +60,24 @@ int loadData(Product *p){
     printf("=> 로딩 성공!\n");
     return i;
 }
+
+void searchName(Product *p, int product_count){
+  int scnt = 0;
+  char search[20];
+    
+  printf("검색할 제품명은? ");
+  scanf("%s", search);
+
+  printf("\nNo|      Name      | gram|  price| grade| grading_count\n");
+  printf("========================================================\n");
+  for(int i=0; i<product_count; i++){
+    if(p[i].gram == -1) continue;
+    if(strstr(p[i].name, search)){
+      printf("%2d ", i+1);
+      readProduct(p[i]);
+      scnt++;
+    }
+  }
+  if(scnt == 0) printf("=> 해당 과일은 판매하지 않습니다!");
+  printf("\n");
+} // 사용자가 원하는 상품(명)이 해당 쇼핑몰에 있는지 검색하는 함수
